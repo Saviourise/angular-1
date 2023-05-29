@@ -1,0 +1,154 @@
+<div sui-container class="container">
+  <h1 suiHeader>Application Form</h1>
+  <form
+    #form="ngForm"
+    sui-form
+    [suiState]="warningOrSuccess"
+    (ngSubmit)="onSubmit(form)"
+    (input)="onChange(form)"
+  >
+    <div sui-message suiState="warning">
+      <div suiMessageHeader>Data not complete!</div>
+      <ul suiMessageList>
+        <li id="firstName" *ngIf="firstName.invalid">First Name is required</li>
+        <li id="lastName" *ngIf="lastName.invalid">Last Name is required</li>
+        <li id="email" *ngIf="email.invalid">Email is required</li>
+        <li id="phoneNumber" *ngIf="phoneNumber.invalid">
+          Phone Number is required
+        </li>
+        <li id="country" *ngIf="country.invalid">Country is required</li>
+        <li id="occupation" *ngIf="occupation.invalid">
+          Occupation is required
+        </li>
+        <li id="successful" *ngIf="successful.invalid">
+          Successful is required
+        </li>
+      </ul>
+    </div>
+    <div sui-message suiState="success">
+      <div suiMessageHeader>Data is complete!</div>
+    </div>
+
+    <div suiFormFields suiWidth="two">
+      <div suiFormField>
+        <label for="firstName">First Name</label>
+        <input
+          type="text"
+          ngModel
+          name="firstName"
+          placeholder="e.g John"
+          required
+          #firstName="ngModel"
+        />
+      </div>
+      <div suiFormField>
+        <label for="lastName">Last Name</label>
+        <input
+          type="text"
+          #lastName="ngModel"
+          ngModel
+          required
+          name="lastName"
+          placeholder="e.g Doe"
+        />
+      </div>
+    </div>
+    <div suiFormField>
+      <label for="email">Email Address</label>
+      <input
+        type="email"
+        required
+        #email="ngModel"
+        email
+        ngModel
+        name="email"
+        placeholder="e.g JohnDoe@gmail.com"
+      />
+    </div>
+    <div suiFormField>
+      <label for="phoneNumber">Phone Number</label>
+      <input
+        type="tel"
+        required
+        #phoneNumber="ngModel"
+        ngModel
+        name="phoneNumber"
+        placeholder="e.g 0900 000 0000"
+      />
+    </div>
+
+    <div suiFormField>
+      <label for="country">Country</label>
+      <sui-select
+        [suiSearch]="true"
+        #country="ngModel"
+        suiPlaceholder="Select Country"
+        (suiSelectionChanged)="onChange(form)"
+        required
+        ngModel
+        name="country"
+        [suiOptions]="countries"
+      >
+      </sui-select>
+    </div>
+
+    <div suiFormField>
+      <label for="occupation">Occupation</label>
+      <sui-select
+        [suiSearch]="true"
+        suiPlaceholder="Select Occupation"
+        required
+        #occupation="ngModel"
+        (suiSelectionChanged)="onChange(form)"
+        name="occupation"
+        ngModel
+        [suiOptions]="occupations"
+      >
+      </sui-select>
+    </div>
+
+    <div suiFormFields [suiGrouped]="true">
+      <label for="successful">Successful:</label>
+
+      <div suiFormField required>
+        <div class="ui radio checkbox">
+          <input
+            type="radio"
+            name="successful"
+            id="successfulTrue"
+            required
+            (valueChanged)="onChange(form)"
+            [value]="true"
+            ngModel
+            #successful="ngModel"
+          />
+          <label for="successfulTrue">True</label>
+        </div>
+      </div>
+      <div suiFormField required>
+        <div class="ui radio checkbox">
+          <input
+            type="radio"
+            name="successful"
+            id="successfulFalse"
+            [value]="false"
+            required
+            (valueChanged)="onChange(form)"
+            ngModel
+            #successful="ngModel"
+          />
+          <label for="successfulFalse">False</label>
+        </div>
+      </div>
+    </div>
+
+    <button
+      sui-button
+      type="submit"
+      [disabled]="!form.valid"
+      suiEmphasis="primary"
+    >
+      Submit
+    </button>
+  </form>
+</div>

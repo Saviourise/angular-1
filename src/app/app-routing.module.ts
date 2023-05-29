@@ -1,10 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { FormpageComponent } from './formpage/formpage.component';
+import { SuccesspageComponent } from './successpage/successpage.component';
 
-const routes: Routes = [];
+const routes: Routes = [
+  { path: '', component: FormpageComponent },
+  { path: 'success', component: SuccesspageComponent },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

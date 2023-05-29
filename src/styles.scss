@@ -1,0 +1,26 @@
+/* You can add global styles to this file, and also import other style files */
+@import "ngx-toastr/toastr";
+
+@import "bootstrap/scss/mixins";
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+
+@import 'ngx-toastr/toastr-bs5-alert';
+
+* {
+  scroll-behavior: smooth;
+}
+
+.container {
+  padding: 50px;
+}
+
+label {
+  cursor: pointer;
+}
+
+@media screen and (max-width: 900px) {
+  .container {
+    padding: 20px;
+  }
+}
